@@ -1,6 +1,6 @@
 
+import { LoginUserDto } from "../..";
 import { JwtAdapter } from "../../../config";
-import { LoginUserDto } from "../../dtos/auth/login-user.dto";
 import { CustomError } from "../../errors/custom.error";
 import { AuthRepository } from "../../repositories/auth.repository";
 
@@ -28,15 +28,11 @@ export class LoginUser implements LoginUserUseCase {
     ) {}
 
     async execute(loginUserDto: LoginUserDto): Promise<UserToken> {
-
         const user = await this.authRepository.login(loginUserDto);
-
-        console.log({user});
 
         const token = await this.signToken({id: user.id});
         if(!token) throw CustomError.internalServer('Error generating token');
         
-        console.log({token});
         return {
             token: token,
             user: {

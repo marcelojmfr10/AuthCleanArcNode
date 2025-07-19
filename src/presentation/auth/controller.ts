@@ -1,8 +1,7 @@
 import { Request, Response } from 'express';
-import { AuthRepository, CustomError, LoginUser, RegisterUser, RegisterUserDto } from '../../domain';
+import { AuthRepository, CustomError, LoginUser, LoginUserDto, RegisterUser, RegisterUserDto } from '../../domain';
 import { JwtAdapter } from '../../config';
 import { UserModel } from '../../data/mongodb';
-import { LoginUserDto } from '../../domain/dtos/auth/login-user.dto';
 
 export class AuthController {
     // DI
